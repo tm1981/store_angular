@@ -1,0 +1,110 @@
+<div class="container">
+    <div class="page-title">
+        <h1>Shopping Cart</h1>
+    </div>
+    <div class="flex-grid center shadow cart">
+        <div class="col-2-3 cart-items" *ngIf="cart.length > 0 && !orderComplete">
+            <table class="cart-table">
+                <thead>
+                    <tr>
+                        <th>
+                            <h4>Product</h4>
+                        </th>
+                        <th>
+                            <h4>Price</h4>
+                        </th>
+                        <th>
+                            <h4>QTY</h4>
+                        </th>
+                        <th>
+                            <h4>Total</h4>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of cart">
+                        <th>
+                            <div><img src="{{item.url}}" class="cart-img"></div>
+                            <div>{{item.name}}</div>
+                        </th>
+                        <th>
+                            ${{item.price}}
+                        </th>
+                        <th>
+                            <div>
+                                <mat-form-field class="cart-table-input"><input type="number" matInput
+                                        [(ngModel)]="item.quantity" (ngModelChange)="onItemUpdate()"></mat-form-field>
+                            </div>
+                        </th>
+                        <th>${{item.price * item.quantity | number:'1.0-2'}}</th>
+                        <th><button mat-icon-button (click)="removeItemFromCart(item.id)">
+                                <mat-icon>delete</mat-icon>
+                            </button></th>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+        <div class="col-1-3 cart-total" *ngIf="cart.length > 0 && !orderComplete">
+            <div class="cart-total-title">
+                <form (ngSubmit)="onSubmit()" class="order-form" #submitOrder="ngForm">
+                    <mat-form-field appearance="standard">
+                        <mat-label class="label">Full Name</mat-label>
+                        <input type="text" name="name" matInput [(ngModel)]="customer.name" required minlength="5"
+                            #name="ngModel">
+                    </mat-form-field>
+                    <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert"></div>
+
+                    <div *ngIf="name.errors?.minlength">
+                        Name must be at least 5 characters long.
+                    </div>
+
+                    <mat-form-field appearance="standard">
+                        <mat-label class="label">Address</mat-label>
+                        <input type="text" name="address" matInput [(ngModel)]="customer.address" required minlength="3"
+                            #address="ngModel">
+                    </mat-form-field>
+
+                    <div *ngIf="address.invalid && (address.dirty || address.touched)" class="alert"></div>
+
+                    <div *ngIf="address.errors?.minlength">
+                        address must be at least 3 characters long.
+                    </div>
+
+                    <mat-form-field appearance="standard">
+                        <mat-label class="label">Card Number</mat-label>
+                        <input type="text" name="card" matInput [(ngModel)]="customer.card" required minlength="6"
+                            #card="ngModel">
+                    </mat-form-field>
+
+                    <div *ngIf="card.invalid && (card.dirty || card.touched)" class="alert"></div>
+
+                    <div *ngIf="card.errors?.minlength">
+                        Card number must be at least 6 numbers long.
+                    </div>
+
+                    <h3>Cart Totla: ${{ getTotal() | number:'1.0-2' }}</h3>
+                    <button mat-raised-button type="submit" [disabled]="submitOrder.invalid">Submit</button>
+                </form>
+
+            </div>
+        </div>
+
+        <div class="col-1-1 cart-empty" *ngIf="cart.length === 0">
+            <div>
+                <h1>Cart is Empty</h1>
+                <h2> did you forgot to add products? :)</h2>
+            </div>
+        </div>
+
+        <div class="col-1-1 cart-empty" *ngIf="orderComplete">
+            <div>
+                <h1>Order Completed</h1>
+                <h2> Thanks you {{customer.name}}!</h2>
+                <h2> your ${{total | number:'1.0-2'}} order is confirmed!</h2>
+                <a routerLink="/" mat-raised-button color="primary">Back to product list</a>
+            </div>
+        </div>
+
+    </div>

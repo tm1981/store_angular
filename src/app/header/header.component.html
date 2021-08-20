@@ -1,0 +1,11 @@
+<mat-toolbar color="primary" class="app-tool-bar">
+    <span>My Store</span>
+    <span class="spacer-1"></span>
+    <nav>
+        <a routerLink="/" mat-button>Home</a>
+        <a routerLink="/cart" mat-button matBadge="{{numOfProducts}}" matBadgeColor="warn"
+            [matBadgeHidden]="numOfProducts === 0">
+            Cart <mat-icon style="font-size:28px;">shopping_cart</mat-icon>
+        </a>
+    </nav>
+</mat-toolbar>

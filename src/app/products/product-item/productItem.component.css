@@ -1,0 +1,28 @@
+.single-product {
+  margin: 30px;
+  /* max-width: 400px */
+}
+
+.action-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-quantity {
+  max-width: 50px;
+  text-align: center;
+}
+
+.product-action-icon .material-icons {
+  font-size: 24px;
+}
+
+.product-image {
+  object-fit: cover;
+  height: 300px;
+}
+
+.link {
+  cursor: pointer;
+}

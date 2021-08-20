@@ -1,0 +1,29 @@
+<mat-card class="single-product">
+    <mat-card-header>
+        <mat-card-title>{{singleProduct.name}}</mat-card-title>
+    </mat-card-header>
+    <img mat-card-image src="{{singleProduct.url}}" class="product-image link" (click)="itemDetails(singleProduct.id)">
+    <mat-card-content>
+        <p>Pirce: {{singleProduct.price}}$</p>
+        <p>{{singleProduct.description}}</p>
+    </mat-card-content>
+    <mat-card-actions>
+        <div class="action-container">
+            <button mat-icon-button color="primary" aria-label="increment quantity" class="product-action-icon"
+                (click)="onAdd()">
+                <mat-icon>add</mat-icon>
+            </button>
+            <mat-form-field appearance="outline" class="product-quantity">
+                <input matInput [value]="this.quantity" disabled>
+            </mat-form-field>
+            <button mat-icon-button color="primary" aria-label="increment quantity" class="product-action-icon"
+                (click)="onSub()">
+                <mat-icon>remove</mat-icon>
+            </button>
+        </div>
+        <div class="action-container">
+            <button mat-raised-button color="primary" (click)="addToCart(singleProduct)" style="margin-bottom: 10px;"
+                [disabled]="this.quantity == 0">Add to cart</button>
+        </div>
+    </mat-card-actions>
+</mat-card>

@@ -1,0 +1,37 @@
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  height: calc(100vh - 110px);
+}
+
+.product-container,
+.page-title {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 0;
+}
+
+.product-container {
+  background-color: white;
+}
+
+.product-img {
+  width: 100%;
+  /* or any custom size */
+  object-fit: cover;
+  max-height: 400px;
+}
+
+.col-img {
+  margin-bottom: -5px;
+}
+
+.col-content {
+  padding: 20px;
+}
+
+.mat-form-field {
+  max-width: 50px;
+  text-align: center;
+}
