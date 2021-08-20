@@ -4,6 +4,6 @@ MyStore is Angular application that allows users to view a list of available pro
 
 ## Getting Started
 
--clone this repo
--run "npm install" to install all dependencies 
--run "ng serve" to start the server with the application
+- clone this repo
+- run "npm install" to install all dependencies 
+- run "ng serve" to start the server with the application
